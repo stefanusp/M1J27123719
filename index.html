@@ -1,0 +1,106 @@
+<input type="text" id="token"/>
+<button onClick='generateToken()'>Generate</button>
+<h1 id="hasil"></h1>
+<script>
+function randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+}
+/*function shuffle(string) {
+    var parts = string.split('');
+    for (var i = parts.length; i > 0;) {
+        var random = parseInt(Math.random() * i);
+        var temp = parts[--i];
+        parts[i] = parts[random];
+        parts[random] = temp;
+    }
+    return parts.join('');
+}*/
+function shuffle(number,string) {
+    var parts = string.split('');
+    for (var i = parts.length; i > 0;) {
+        var random = parseInt(Math.random() * i);
+        var temp = parts[--i];
+        parts[i] = parts[random];
+        parts[random] = temp;
+    }
+	number = number.toString();
+    var nn = number.split('');
+	random = 0;
+    for (var i = 0; i < nn.length; i++) {
+		random = random + parseInt(Math.random() * (i+1))+1;
+		parts.splice(random, 0, nn[i]);
+	}
+    return parts.join('');
+}
+function generateToken()
+{
+	kata = document.getElementById('token').value;
+	karakter = kata.substring(1,kata.length);
+	metode = kata.substring(0,1);
+	console.log(metode);
+	
+	console.log(karakter);
+	karakter = karakter.split('-');
+	console.log(karakter);
+	karakter = karakter.join('');
+	console.log(karakter);
+	nilai = karakter.replace(/[^0-9]/g, '');
+	console.log(nilai);
+	switch(metode) {
+		case "A":
+			hitung = nilai.substring(1,nilai.length);
+			console.log(hitung);
+			hitung = (parseFloat(hitung)+82)*3;
+			break;
+		case "B":
+			hitung = nilai.substring(1,nilai.length);
+			console.log(hitung);
+			hitung = (parseFloat(hitung)+83)*2;
+			break;
+		case "C":
+			hitung = nilai.substring(1,nilai.length);
+			hitung = (parseFloat(hitung)+72)*2;
+			break;
+		case "D":
+			hitung = nilai.substring(1,nilai.length);
+			console.log(hitung);
+			hitung = (parseFloat(hitung)+73)*4;
+			break;
+		case "E":
+			hitung = nilai.substring(1,nilai.length);
+			console.log(hitung);
+			hitung = (parseFloat(hitung)+72)*4;
+			break;
+		case "F":
+			hitung = nilai.substring(1,nilai.length);
+			console.log(hitung);
+			hitung = (parseFloat(hitung)+63)*2;
+			break;
+		case "G":
+			hitung = nilai.substring(1,nilai.length);
+			console.log(hitung);
+			hitung = (parseFloat(hitung)+53)*3;
+			break;
+		case "H":
+			hitung = nilai.substring(1,nilai.length);
+			console.log(hitung);
+			hitung = (parseFloat(hitung)+52)*3;
+			break;
+		case "I":
+			hitung = nilai.substring(1,nilai.length);
+			console.log(hitung);
+			hitung = (parseFloat(hitung)+92)*3;
+			break;
+		default:
+	}
+	
+	var rString = randomString(4, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+	console.log(rString);
+	console.log(hitung);
+	console.log(shuffle(hitung,rString));
+	document.getElementById('hasil').innerHTML = shuffle(hitung,rString);
+	console.log(kata);
+}
+</script>
